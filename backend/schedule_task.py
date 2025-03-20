@@ -25,6 +25,20 @@ def schedule_all_tasks():
     schedule.every().day.at("16:00").do(agent.run_wrapper)
     print("Tweet schedule set for 5:00 AM, 6:00 AM, and 7:00 AM daily")
 
+import schedule
+import time
+import redis
+
+# Configure Redis connection (adjust host/port as needed)
+redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
+
+
+
+# Schedule the task every 2 seconds
+print("Scheduler running. Press CTRL+C to exit.")
+while True:
+    schedule.run_pending()
+    time.sleep(0.5)
 
 def run_all_schedulers(stop_event):
     print('Scheduler thread started - managing all scheduled tasks')

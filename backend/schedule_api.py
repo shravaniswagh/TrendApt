@@ -15,6 +15,8 @@ from dotenv import load_dotenv
 from pathlib import Path
 from apt_agent import agent_awareness,apt_agent
 
+ACCESS_TOKEN="1592190862016004096-eUnr7p36EXpy4yCX8kG88SYwah7Xbc"
+
 env_path = Path('.').absolute() / '.env'
 print(f"loading .env : {env_path}")
 

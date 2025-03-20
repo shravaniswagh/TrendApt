@@ -16,6 +16,8 @@ import hashlib
 import secrets
 import urllib.parse
 
+
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -219,37 +221,45 @@ def check_redis_connection():
         return False
 
 
+import os
+import logging
+import time
+import sys
+
+logger = logging.getLogger("twitter")
+
 def start_twitter_grant():
-    logger.info(os.getenv("X_CLIENT_ID"))
-    logger.info( CLIENT_ID)
-    logger.info( CLIENT_SECRET)
+    # Load environment variables
+    CLIENT_ID = os.getenv("CLIENT_ID")
+    CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+    ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")  # Load token from .env if available
+
+    # Check if token exists (Hardcoded, from .env, or Redis)
+    existing_tokens = get_tokens_from_redis()  # Fetch stored tokens if available
+
+    if ACCESS_TOKEN:  # If hardcoded in .env
+        logger.info("✅ Using hardcoded access token from .env")
+        return ACCESS_TOKEN
+
+    elif existing_tokens and "access_token" in existing_tokens:  # If available in Redis
+        logger.info("✅ Using stored access token from Redis")
+        return existing_tokens["access_token"]
+
+    logger.error("❌ No access token found. You need to manually provide one.")
+
+    return None  # Return None if no valid token is found
 
 
-    # Check if we already have tokens for this agent
-    existing_tokens = get_tokens_from_redis()
-    if existing_tokens:
-        logger.info(f"Tokens already exist Do you want to reauthorize? (y/n)")
-        choice = input().lower()
-        if choice != 'y':
-            logger.info(f"Skipping ...")
-            return
 
-    # step 1: get Authorization URL
-    logger.info("init trade_agents X access_token")
+import schedule
+import time
+import redis
 
-    logger.info(get_authorization_url())
-    # st3p 2: get Authorization Code
-    authorization_code = input("input Authorization Code: ").strip()
-    tokens = get_tokens_from_code(authorization_code, CLIENT_ID, CLIENT_SECRET)
+# Configure Redis connection (adjust host/port as needed)
+redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
-    if tokens:
-        token_data = {
-            "access_token": tokens["access_token"],
-            "refresh_token": tokens.get("refresh_token", ''),
-            "created_at": time.time()
-        }
-        store_tokens_in_redis(token_data)
-        logger.info(f" grant success {token_data}")
+
+
 
 
 def input_authorization_code(authorization_code):

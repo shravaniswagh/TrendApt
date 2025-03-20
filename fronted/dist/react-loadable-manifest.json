@@ -1,0 +1,18 @@
+{
+  "node_modules\\@aptos-labs\\ts-sdk\\dist\\esm\\chunk-FJ5J7CVW.mjs -> @aptos-labs/script-composer-pack": {
+    "id": "node_modules\\@aptos-labs\\ts-sdk\\dist\\esm\\chunk-FJ5J7CVW.mjs -> @aptos-labs/script-composer-pack",
+    "files": []
+  },
+  "node_modules\\@atomrigslab\\aptos-wallet-adapter\\dist\\index.es.js -> ./index-DRmafxZ_.mjs": {
+    "id": "node_modules\\@atomrigslab\\aptos-wallet-adapter\\dist\\index.es.js -> ./index-DRmafxZ_.mjs",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_atomrigslab_aptos-wallet-adapter_dist_index-DRmafxZ__mjs.js"
+    ]
+  },
+  "node_modules\\next\\dist\\client\\components\\react-dev-overlay\\utils\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts": {
+    "id": "node_modules\\next\\dist\\client\\components\\react-dev-overlay\\utils\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_next_dist_client_dev_noop-turbopack-hmr_js.js"
+    ]
+  }
+}
