@@ -5,3 +5,4 @@ fronted/node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node filte
 *.pyd filter=lfs diff=lfs merge=lfs -text
 *.exe filter=lfs diff=lfs merge=lfs -text
 *.node filter=lfs diff=lfs merge=lfs -text
+*.gz filter=lfs diff=lfs merge=lfs -text
